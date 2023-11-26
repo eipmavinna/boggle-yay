@@ -42,10 +42,10 @@ def roll(): #a function that returns a 2d list of 16 random letters from a to z
             row_collumn[i][j] = random.choice(string.ascii_lowercase)
     return row_collumn
 
-def right_letters():
+def right_letters(): #rolls until there is the right amount of each letter, returns a 2d list of 16 random letters from a to z
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
     correct = False
-    while correct == False:   #rolls until there is the right amount of each letter
+    while correct == False:
         r = roll()
         a_count = []
         for letter in alphabet: #takes each letter of the alphabet in turn and counts how many there are in r
@@ -82,20 +82,104 @@ def make_board(roll):  #takes letters from a 2d list called roll and prints the 
         print("|")
         print("-"*17)
 
+def rules():
+    print("BOGGLE")
+    print("Enter words made from letters on the board.")
+    print("The words may not be less than three letters, use the same space twice, or connect to a letter outside of the surrounding blocks.")
+    print("Every 'Q' on the board will be considered to be a 'Qu'.")
+    print("Set a timer for two minutes and write down words made until the time runs out.")
+    print("Both players will then type in their words and enter 'x' when finished.")
+    print("A winner will be determined by how many unique words each player has.")
+    print()
+
+
+def right_spaces(word, board): #takes the word and checks to see if the letters are connected correctly, outputs a boolean (each letter follows from the last)
+    for i in range(4):
+        for j in range(4):
+            if DFS(word, board, i, j):
+                return True
+    return False
 
 
 
+def DFS(word, board, r, c):
+    if board[r][c] != word[0]:  #if the coordinates i + j of the loop isn't equal to the first letter, exit and try the next combination
+        return False
+    if len(word) == 1:
+        if board[r][c] == word[0]: #if the end of the word is reached and the combination i + j is correct, return true overall
+            return True
+        else:
+            return False
+    next_letter = word.replace(word[0], "", 1)
+    if((r-1)>-1):
+        if DFS(next_letter, board, r-1, c):
+            return True
+    if ((r+1)<4):
+        if DFS(next_letter, board, r+1, c):
+            return True
+    if ((c-1)>-1):
+        if DFS(next_letter, board, r, c-1):
+            return True
+    if ((c+1)<4):
+        if DFS(next_letter, board, r, c+1):
+            return True
+    if ((r+1)<4) and ((c+1)<4):
+        if DFS(next_letter, board, r+1, c+1):
+            return True
+    if ((r+1)<4) and ((c-1)>-1):
+        if DFS(next_letter, board, r+1, c-1):
+            return True
+    if ((r-1)>-1) and ((c+1)<4):
+        if DFS(next_letter, board, r-1, c+1):
+            return True
+    if ((r-1)>-1) and ((c-1)>-1):
+        if DFS(next_letter, board, r-1, c-1):
+            return True
+    return False
+    
+
+
+
+rules()
 b = right_letters()  #takes probable 2d list of a roll
 make_board(b)  #prints a board with that roll
-
-
-
 print()
-print()  
-print(b)
-print(b[1][1])
-b[1][1] = 'z'
-print(b)
+user_word = "" #do I need to initialize?
+p1_words = []
+print("Player One")
+while user_word != "x":
+    user_word =  (input("Enter a word or x to finish: "))
+    user_word = user_word.lower()
+    length = len(user_word)
+    if user_word == "x":
+        print("Finished")
+        print()
+    elif (length < 3) and (right_spaces(user_word, b) == False):
+        print("your word is too short and the letters are not connected correctly")
+    elif (length < 3):
+        print("your word is too short")
+    elif right_spaces(user_word, b) == False:
+        print("the letters are not connected correctly")
+    else:
+        p1_words.append(user_word)
+p2_words = []
+print("Player Two")
+user_word = ""
+while user_word != "x":
+    user_word =  (input("Enter a word or x to finish: ")).lower()
+    if user_word == "x":
+        print("Finished")
+        print()
+    elif (user_word < 3) and (right_spaces(user_word, b) == False):
+        print("your word is too short and the letters are not connected correctly")
+    elif (len(user_word) < 3):
+        print("your word is too short")
+    elif right_spaces(user_word, b) == False:
+        print("the letters are not connected correctly")
+    else:
+        p2_words.append(user_word)
+print()
+# compare
 
 
 
