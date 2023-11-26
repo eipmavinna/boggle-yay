@@ -138,6 +138,24 @@ def DFS(word, board, r, c):
     return False
     
 
+def compare(one, two): #takes the lists of words found by each player, removes non-unique words and outputs the winner and the score
+    for word1 in one: #goes through both lists and removes duplicates
+        remove = False
+        for word2 in two:
+            if word1 == word2:
+                remove = True
+        if remove == True:
+            one.remove(word1)
+            two.remove(word1)
+    if len(one) > len(two):
+        print(f"Player one wins. Number of uniqe words was {len(one)}, while the number of player two's unique words was {len(two)}.")
+    elif len(one) < len(two):
+        print(f"Player two wins. Number of uniqe words was {len(two)}, while the number of player two's unique words was {len(one)}.")
+    elif len(one) == len(two):
+        print(f"Tie. Number of unique words for each is {len(one)}")
+    else:
+        print("Tie. No unique words.")
+
 
 
 rules()
@@ -160,6 +178,8 @@ while user_word != "x":
         print("your word is too short")
     elif right_spaces(user_word, b) == False:
         print("the letters are not connected correctly")
+    elif p1_words.count(user_word)>0:
+        print("already in the list")
     else:
         p1_words.append(user_word)
 p2_words = []
@@ -170,16 +190,18 @@ while user_word != "x":
     if user_word == "x":
         print("Finished")
         print()
-    elif (user_word < 3) and (right_spaces(user_word, b) == False):
+    elif (len(user_word) < 3) and (right_spaces(user_word, b) == False):
         print("your word is too short and the letters are not connected correctly")
     elif (len(user_word) < 3):
         print("your word is too short")
     elif right_spaces(user_word, b) == False:
         print("the letters are not connected correctly")
+    elif p2_words.count(user_word) > 0:
+        print("already in the list")
     else:
         p2_words.append(user_word)
-print()
-# compare
+
+compare(p1_words, p2_words)
 
 
 
