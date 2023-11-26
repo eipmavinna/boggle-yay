@@ -77,7 +77,7 @@ def make_board(roll):  #takes letters from a 2d list called roll and prints the 
     print("-"*17)
     for i in range(4):
         for j in range(4):
-            x = (roll[i][j]).upper
+            x = (roll[i][j]).upper()
             print(f"| {x} ", end = "")
         print("|")
         print("-"*17)
