@@ -77,7 +77,8 @@ def make_board(roll):  #takes letters from a 2d list called roll and prints the 
     print("-"*17)
     for i in range(4):
         for j in range(4):
-            print(f"| {roll[i][j]} ", end = "")
+            x = (roll[i][j]).upper
+            print(f"| {x} ", end = "")
         print("|")
         print("-"*17)
 
@@ -86,6 +87,7 @@ def make_board(roll):  #takes letters from a 2d list called roll and prints the 
 
 b = right_letters()  #takes probable 2d list of a roll
 make_board(b)  #prints a board with that roll
+
 
 
 print()
