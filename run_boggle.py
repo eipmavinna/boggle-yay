@@ -3,36 +3,6 @@ import random
 
 
 
-#if row_collumn[i[j]] == "q":
-#                row_collumn[i[j]] = "qu"
-
-
-
-#def right_letters(): honestly come back to this  #rolls until there is a probable amount of each letter and returns a 2d list of 16 random letters from a to z
-
- #   b = roll()
-  #  correct = False
-   # while correct == False:
-    #    if (b.count("q")>1) or (b.count("x")>1) or (b.count("z")>1) or (b.count("j")>1):
-     #       b = roll()
-      #  elif (b.count("f")>2) or (b.count("k")>2) or (b.count("w")>2) or (b.count("v")>2):
-       #     b = roll()
-       # elif (b.count("b")>3) or (b.count("c")>3) or (b.count("g")>3) or (b.count("h")>3) or (b.count("p")>3) or (b.count("u")>3) or (b.count("y")>3):
-       #     b = roll()
-       # elif (b.count("d")>4) or (b.count("m")>4) or (b.count("r")>4):
-       #     b = roll()
-       # elif (b.count("l")>5) or (b.count("s")>5) or (b.count("n")>5):
-       #     b = roll()
-       # elif (b.count("t")>6) or (b.count("o")>6):
-       #     b = roll() # 
-       # elif (b.count("i")>7) or (b.count("a")>9) or (b.count("e")>10):
-       #     b = roll()
-       # else:
-       #     correct = True
-
-
-
-
 def roll(): #a function that returns a 2d list of 16 random letters from a to z
     i=0
     j=0
@@ -205,3 +175,7 @@ compare(p1_words, p2_words)
 
 
 
+#add a path to DFS
+#add a library to say if the word's correct
+#add a timer maybe
+#look up actual rules
