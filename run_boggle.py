@@ -109,6 +109,7 @@ def DFS(word, board, r, c):
     
 
 def compare(one, two): #takes the lists of words found by each player, removes non-unique words and outputs the winner and the score
+    same = []
     for word1 in one: #goes through both lists and removes duplicates
         remove = False
         for word2 in two:
@@ -117,6 +118,7 @@ def compare(one, two): #takes the lists of words found by each player, removes n
         if remove == True:
             one.remove(word1)
             two.remove(word1)
+            same.append(word1)
     if len(one) > len(two):
         print(f"Player one wins. Number of uniqe words was {len(one)}, while the number of player two's unique words was {len(two)}.")
     elif len(one) < len(two):
@@ -125,6 +127,7 @@ def compare(one, two): #takes the lists of words found by each player, removes n
         print(f"Tie. Number of unique words for each is {len(one)}")
     else:
         print("Tie. No unique words.")
+    print(f"Words removed: {same}")
 
 
 
@@ -179,3 +182,4 @@ compare(p1_words, p2_words)
 #add a library to say if the word's correct
 #add a timer maybe
 #look up actual rules
+#maybe count longer words as more points?
