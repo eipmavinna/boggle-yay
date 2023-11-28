@@ -128,6 +128,7 @@ def compare(one, two): #takes the lists of words found by each player, removes n
     else:
         print("Tie. No unique words.")
     print(f"Words removed: {same}")
+    print()
 
 
 
